@@ -209,7 +209,6 @@ body {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
-/* Colour trigger button (opens dialog) */
 .colour-trigger {
   display: inline-flex;
   align-items: center;
@@ -691,7 +690,6 @@ a.btn[download]:hover {
   h2 { font-size: 1.35rem; }
   .card { padding: 1.05rem 1.1rem; }
 
-  /* Stack the avatar above the text even in horizontal mode */
   [data-layout="horizontal"] .hero-content {
     flex-direction: column;
     align-items: flex-start;
