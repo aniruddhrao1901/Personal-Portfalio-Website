@@ -23,6 +23,7 @@ ul { list-style: none; }
   --faint:      #5f6880;
   --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.35);
   --shadow-md:  0 12px 32px rgba(0, 0, 0, 0.45);
+  --overlay:    rgba(0, 0, 0, 0.60);
 }
 
 [data-theme="light"] {
@@ -35,40 +36,61 @@ ul { list-style: none; }
   --faint:      #9aa2b4;
   --shadow-sm:  0 2px 8px rgba(20, 23, 31, 0.05);
   --shadow-md:  0 14px 34px rgba(20, 23, 31, 0.09);
+  --overlay:    rgba(20, 23, 31, 0.45);
 }
 
 /* ============================================================
-   3. COLOUR TOKENS — 10 accents × light/dark
+   3. COLOUR TOKENS — 20 accents × light/dark
    ============================================================ */
 
 /* ---- DARK ---- */
-[data-theme="dark"][data-color="blue"]   { --accent:#4d8dff; --accent-2:#7aa8ff; --accent-soft:rgba(77,141,255,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="purple"] { --accent:#a877ff; --accent-2:#c39bff; --accent-soft:rgba(168,119,255,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="green"]  { --accent:#35d17a; --accent-2:#6ae19e; --accent-soft:rgba(53,209,122,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="red"]    { --accent:#ff5566; --accent-2:#ff8a95; --accent-soft:rgba(255,85,102,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="orange"] { --accent:#ff9a3d; --accent-2:#ffbb6e; --accent-soft:rgba(255,154,61,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="yellow"] { --accent:#ffd23d; --accent-2:#ffe27a; --accent-soft:rgba(255,210,61,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="pink"]   { --accent:#ff6bb5; --accent-2:#ff9bd0; --accent-soft:rgba(255,107,181,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="cyan"]   { --accent:#38d6ef; --accent-2:#74e4f6; --accent-soft:rgba(56,214,239,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="teal"]   { --accent:#2fd4be; --accent-2:#6ae4d2; --accent-soft:rgba(47,212,190,.14); --on-accent:#0b0d12; }
-[data-theme="dark"][data-color="indigo"] { --accent:#7c8bff; --accent-2:#a3adff; --accent-soft:rgba(124,139,255,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="blue"]    { --accent:#4d8dff; --accent-2:#7aa8ff; --accent-soft:rgba(77,141,255,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="purple"]  { --accent:#a877ff; --accent-2:#c39bff; --accent-soft:rgba(168,119,255,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="green"]   { --accent:#35d17a; --accent-2:#6ae19e; --accent-soft:rgba(53,209,122,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="red"]     { --accent:#ff5566; --accent-2:#ff8a95; --accent-soft:rgba(255,85,102,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="orange"]  { --accent:#ff9a3d; --accent-2:#ffbb6e; --accent-soft:rgba(255,154,61,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="yellow"]  { --accent:#ffd23d; --accent-2:#ffe27a; --accent-soft:rgba(255,210,61,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="pink"]    { --accent:#ff6bb5; --accent-2:#ff9bd0; --accent-soft:rgba(255,107,181,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="cyan"]    { --accent:#38d6ef; --accent-2:#74e4f6; --accent-soft:rgba(56,214,239,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="teal"]    { --accent:#2fd4be; --accent-2:#6ae4d2; --accent-soft:rgba(47,212,190,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="indigo"]  { --accent:#7c8bff; --accent-2:#a3adff; --accent-soft:rgba(124,139,255,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="lime"]    { --accent:#b6ee3b; --accent-2:#cdff70; --accent-soft:rgba(182,238,59,.14);  --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="rose"]    { --accent:#ff6382; --accent-2:#ff8fa3; --accent-soft:rgba(255,99,130,.14);  --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="slate"]   { --accent:#94a3b8; --accent-2:#b7c2d3; --accent-soft:rgba(148,163,184,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="amber"]   { --accent:#ffb52e; --accent-2:#ffcb63; --accent-soft:rgba(255,181,46,.14);  --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="emerald"] { --accent:#1fd28c; --accent-2:#57e2aa; --accent-soft:rgba(31,210,140,.14);  --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="fuchsia"] { --accent:#e052ff; --accent-2:#eb85ff; --accent-soft:rgba(224,82,255,.14);  --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="sky"]     { --accent:#43c8ff; --accent-2:#7dd9ff; --accent-soft:rgba(67,200,255,.14);  --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="violet"]  { --accent:#9b8cff; --accent-2:#bcb2ff; --accent-soft:rgba(155,140,255,.14); --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="coral"]   { --accent:#ff8360; --accent-2:#ffa88a; --accent-soft:rgba(255,131,96,.14);  --on-accent:#0b0d12; }
+[data-theme="dark"][data-color="mint"]    { --accent:#63e6c4; --accent-2:#9aefd7; --accent-soft:rgba(99,230,196,.14);  --on-accent:#0b0d12; }
 
 /* ---- LIGHT ---- */
-[data-theme="light"][data-color="blue"]   { --accent:#2563eb; --accent-2:#3b82f6; --accent-soft:rgba(37,99,235,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="purple"] { --accent:#7c3aed; --accent-2:#9333ea; --accent-soft:rgba(124,58,237,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="green"]  { --accent:#16a34a; --accent-2:#22c55e; --accent-soft:rgba(22,163,74,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="red"]    { --accent:#dc2626; --accent-2:#ef4444; --accent-soft:rgba(220,38,38,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="orange"] { --accent:#ea580c; --accent-2:#f97316; --accent-soft:rgba(234,88,12,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="yellow"] { --accent:#b45309; --accent-2:#d97706; --accent-soft:rgba(180,83,9,.12); --on-accent:#ffffff; }
-[data-theme="light"][data-color="pink"]   { --accent:#db2777; --accent-2:#ec4899; --accent-soft:rgba(219,39,119,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="cyan"]   { --accent:#0891b2; --accent-2:#06b6d4; --accent-soft:rgba(8,145,178,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="teal"]   { --accent:#0d9488; --accent-2:#14b8a6; --accent-soft:rgba(13,148,136,.10); --on-accent:#ffffff; }
-[data-theme="light"][data-color="indigo"] { --accent:#4f46e5; --accent-2:#6366f1; --accent-soft:rgba(79,70,229,.10); --on-accent:#ffffff; }
+[data-theme="light"][data-color="blue"]    { --accent:#2563eb; --accent-2:#3b82f6; --accent-soft:rgba(37,99,235,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="purple"]  { --accent:#7c3aed; --accent-2:#9333ea; --accent-soft:rgba(124,58,237,.10); --on-accent:#ffffff; }
+[data-theme="light"][data-color="green"]   { --accent:#16a34a; --accent-2:#22c55e; --accent-soft:rgba(22,163,74,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="red"]     { --accent:#dc2626; --accent-2:#ef4444; --accent-soft:rgba(220,38,38,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="orange"]  { --accent:#ea580c; --accent-2:#f97316; --accent-soft:rgba(234,88,12,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="yellow"]  { --accent:#b45309; --accent-2:#d97706; --accent-soft:rgba(180,83,9,.12);   --on-accent:#ffffff; }
+[data-theme="light"][data-color="pink"]    { --accent:#db2777; --accent-2:#ec4899; --accent-soft:rgba(219,39,119,.10); --on-accent:#ffffff; }
+[data-theme="light"][data-color="cyan"]    { --accent:#0891b2; --accent-2:#06b6d4; --accent-soft:rgba(8,145,178,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="teal"]    { --accent:#0d9488; --accent-2:#14b8a6; --accent-soft:rgba(13,148,136,.10); --on-accent:#ffffff; }
+[data-theme="light"][data-color="indigo"]  { --accent:#4f46e5; --accent-2:#6366f1; --accent-soft:rgba(79,70,229,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="lime"]    { --accent:#4d7c0f; --accent-2:#65a30d; --accent-soft:rgba(77,124,15,.12);   --on-accent:#ffffff; }
+[data-theme="light"][data-color="rose"]    { --accent:#e11d48; --accent-2:#f43f5e; --accent-soft:rgba(225,29,72,.10);   --on-accent:#ffffff; }
+[data-theme="light"][data-color="slate"]   { --accent:#475569; --accent-2:#64748b; --accent-soft:rgba(71,85,105,.12);   --on-accent:#ffffff; }
+[data-theme="light"][data-color="amber"]   { --accent:#b45309; --accent-2:#d97706; --accent-soft:rgba(180,83,9,.12);    --on-accent:#ffffff; }
+[data-theme="light"][data-color="emerald"] { --accent:#059669; --accent-2:#10b981; --accent-soft:rgba(5,150,105,.10);   --on-accent:#ffffff; }
+[data-theme="light"][data-color="fuchsia"] { --accent:#c026d3; --accent-2:#d946ef; --accent-soft:rgba(192,38,211,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="sky"]     { --accent:#0284c7; --accent-2:#0ea5e9; --accent-soft:rgba(2,132,199,.10);   --on-accent:#ffffff; }
+[data-theme="light"][data-color="violet"]  { --accent:#6d28d9; --accent-2:#8b5cf6; --accent-soft:rgba(109,40,217,.10);  --on-accent:#ffffff; }
+[data-theme="light"][data-color="coral"]   { --accent:#f43f5e; --accent-2:#fb7185; --accent-soft:rgba(244,63,94,.10);   --on-accent:#ffffff; }
+[data-theme="light"][data-color="mint"]    { --accent:#0d9488; --accent-2:#14b8a6; --accent-soft:rgba(13,148,136,.10);  --on-accent:#ffffff; }
 
 /* Fallback */
 :root {
-  --accent:#4d8dff; --accent-2:#7aa8ff;
-  --accent-soft:rgba(77,141,255,.14); --on-accent:#0b0d12;
+  --accent:#2563eb; --accent-2:#3b82f6;
+  --accent-soft:rgba(37,99,235,.10); --on-accent:#ffffff;
 }
 
 /* ============================================================
@@ -187,35 +209,121 @@ body {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
-.swatches { display: flex; gap: .4rem; flex-wrap: wrap; max-width: 340px; }
-
-.swatch {
-  width: 20px; height: 20px;
+/* Colour trigger button (opens dialog) */
+.colour-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .45rem .9rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color .2s ease, background-color .3s ease;
+}
+.colour-trigger:hover { border-color: var(--accent); }
+.colour-dot {
+  width: 14px; height: 14px;
   border-radius: 50%;
-  border: 2px solid transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  transition: background .35s ease;
+}
+
+/* ============================================================
+   6. COLOUR DIALOG
+   ============================================================ */
+.colour-dialog {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.15rem 1.25rem 1.35rem;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  max-width: 420px;
+  width: calc(100vw - 2rem);
+  transition: background-color .3s ease, border-color .3s ease;
+}
+
+.colour-dialog::backdrop {
+  background: var(--overlay);
+  backdrop-filter: blur(3px);
+}
+
+.colour-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.colour-dialog-head h3 {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.colour-dialog-close {
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+}
+.colour-dialog-close:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.colour-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: .65rem;
+}
+
+.colour-swatch {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 3px solid transparent;
   padding: 0;
   transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease;
 }
-.swatch:hover { transform: scale(1.18); }
-.swatch.active {
+.colour-swatch:hover { transform: scale(1.12); }
+.colour-swatch.active {
   border-color: var(--text);
-  transform: scale(1.12);
+  transform: scale(1.08);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-.swatch[data-color="blue"]   { background: linear-gradient(135deg,#3b82f6,#60a5fa); }
-.swatch[data-color="purple"] { background: linear-gradient(135deg,#8b5cf6,#a78bfa); }
-.swatch[data-color="green"]  { background: linear-gradient(135deg,#16a34a,#4ade80); }
-.swatch[data-color="red"]    { background: linear-gradient(135deg,#dc2626,#f87171); }
-.swatch[data-color="orange"] { background: linear-gradient(135deg,#ea580c,#fb923c); }
-.swatch[data-color="yellow"] { background: linear-gradient(135deg,#eab308,#facc15); }
-.swatch[data-color="pink"]   { background: linear-gradient(135deg,#db2777,#f472b6); }
-.swatch[data-color="cyan"]   { background: linear-gradient(135deg,#0891b2,#22d3ee); }
-.swatch[data-color="teal"]   { background: linear-gradient(135deg,#0d9488,#2dd4bf); }
-.swatch[data-color="indigo"] { background: linear-gradient(135deg,#4f46e5,#818cf8); }
+.colour-swatch[data-color="blue"]    { background: linear-gradient(135deg,#3b82f6,#60a5fa); }
+.colour-swatch[data-color="purple"]  { background: linear-gradient(135deg,#8b5cf6,#a78bfa); }
+.colour-swatch[data-color="green"]   { background: linear-gradient(135deg,#16a34a,#4ade80); }
+.colour-swatch[data-color="red"]     { background: linear-gradient(135deg,#dc2626,#f87171); }
+.colour-swatch[data-color="orange"]  { background: linear-gradient(135deg,#ea580c,#fb923c); }
+.colour-swatch[data-color="yellow"]  { background: linear-gradient(135deg,#eab308,#facc15); }
+.colour-swatch[data-color="pink"]    { background: linear-gradient(135deg,#db2777,#f472b6); }
+.colour-swatch[data-color="cyan"]    { background: linear-gradient(135deg,#0891b2,#22d3ee); }
+.colour-swatch[data-color="teal"]    { background: linear-gradient(135deg,#0d9488,#2dd4bf); }
+.colour-swatch[data-color="indigo"]  { background: linear-gradient(135deg,#4f46e5,#818cf8); }
+.colour-swatch[data-color="lime"]    { background: linear-gradient(135deg,#65a30d,#a3e635); }
+.colour-swatch[data-color="rose"]    { background: linear-gradient(135deg,#e11d48,#fb7185); }
+.colour-swatch[data-color="slate"]   { background: linear-gradient(135deg,#475569,#94a3b8); }
+.colour-swatch[data-color="amber"]   { background: linear-gradient(135deg,#d97706,#fbbf24); }
+.colour-swatch[data-color="emerald"] { background: linear-gradient(135deg,#059669,#34d399); }
+.colour-swatch[data-color="fuchsia"] { background: linear-gradient(135deg,#c026d3,#e879f9); }
+.colour-swatch[data-color="sky"]     { background: linear-gradient(135deg,#0284c7,#38bdf8); }
+.colour-swatch[data-color="violet"]  { background: linear-gradient(135deg,#6d28d9,#a78bfa); }
+.colour-swatch[data-color="coral"]   { background: linear-gradient(135deg,#f43f5e,#fdba74); }
+.colour-swatch[data-color="mint"]    { background: linear-gradient(135deg,#0d9488,#5eead4); }
 
 /* ============================================================
-   6. SCROLL REGION & LAYOUT MODES
+   7. SCROLL REGION & LAYOUT MODES
    ============================================================ */
 .page {
   flex: 1 1 auto;
@@ -266,7 +374,7 @@ body {
 [data-layout="horizontal"] .panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
 
 /* ============================================================
-   7. TYPOGRAPHY
+   8. TYPOGRAPHY
    ============================================================ */
 h1 {
   font-size: clamp(2.2rem, 5.5vw, 3.4rem);
@@ -314,7 +422,7 @@ h3 {
 }
 
 /* ============================================================
-   8. HERO — profile image + text
+   9. HERO — profile image + text
    ============================================================ */
 .hero-content {
   display: flex;
@@ -353,7 +461,7 @@ h3 {
 }
 
 /* ============================================================
-   9. CARDS, CHIPS, BUTTONS
+   10. CARDS, CHIPS, BUTTONS
    ============================================================ */
 .card {
   background: var(--card);
@@ -423,7 +531,62 @@ h3 {
 .cta-row { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.4rem; }
 
 /* ============================================================
-   10. CONTACT FORM
+   11. QUICK LINKS STRIP (Hero)
+   ============================================================ */
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1.1rem;
+}
+
+.quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .4rem .85rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  text-decoration: none;
+  transition: color .2s ease, border-color .2s ease,
+              background-color .3s ease, transform .15s ease;
+}
+
+.quick-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.ql-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  font-size: .68rem;
+  font-weight: 800;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Resume download button — outline style */
+a.btn[download] {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+a.btn[download]:hover {
+  background: var(--accent-soft);
+}
+
+/* ============================================================
+   12. CONTACT FORM
    ============================================================ */
 .contact-layout {
   display: grid;
@@ -486,7 +649,7 @@ h3 {
 .form-status.error   { color: #ef4444; }
 
 /* ============================================================
-   11. FOOTER
+   13. FOOTER
    ============================================================ */
 .site-footer {
   flex: 0 0 auto;
@@ -500,7 +663,7 @@ h3 {
 }
 
 /* ============================================================
-   12. RESPONSIVE
+   14. RESPONSIVE
    ============================================================ */
 @media (max-width: 1000px) {
   .main-nav {
@@ -519,8 +682,6 @@ h3 {
   .control-label { display: none; }
   .controls { width: 100%; justify-content: space-between; gap: .6rem; }
   .seg-btn { padding: .3rem .6rem; font-size: .72rem; }
-  .swatches { max-width: 100%; gap: .35rem; }
-  .swatch { width: 18px; height: 18px; }
 
   [data-layout="vertical"] .page { padding: 1.5rem 1rem 2rem; }
   [data-layout="horizontal"] .page { padding: 1rem; gap: 1rem; }
@@ -539,6 +700,12 @@ h3 {
     width: 110px;
     height: 110px;
   }
+
+  .quick-links { gap: .35rem; }
+  .quick-link { padding: .35rem .7rem; font-size: .72rem; }
+
+  .colour-grid { grid-template-columns: repeat(5, 1fr); gap: .5rem; }
+  .colour-dialog { padding: 1rem 1rem 1.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,29 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-layout="vertical" data-theme="dark" data-color="blue">
+<html lang="en" data-layout="horizontal" data-theme="light" data-color="blue">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aniruddh Rao — AI Software Engineer</title>
-
-  <!-- ============================================================
-       FAVICON
-       Replace PASTE_YOUR_ICON_URL_HERE with your icon URL.
-       Examples:
-         https://example.com/favicon.ico
-         https://example.com/icon.png
-         ./favicon.ico            (file in the same folder)
-       ============================================================ -->
   <link rel="icon" href="WhatsApp Image 2026-03-26 at 4.31.18 PM-pixeltools.ico">
-
   <link rel="stylesheet" href="style.css">
 </head>
-<!-- == -->
+
 <body>
 
-  <!-- ============================================================
-       HEADER — brand, nav, controls
-       ============================================================ -->
   <header class="site-header">
     <div class="header-inner">
 
@@ -36,68 +23,77 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#certifications">Certifications</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <div class="controls" role="group" aria-label="Display settings">
 
-        <!-- Layout -->
         <div class="control-group">
           <span class="control-label">Layout</span>
           <div class="segmented" id="layoutControl">
-            <button type="button" class="seg-btn active" data-layout="vertical">Vertical</button>
-            <button type="button" class="seg-btn" data-layout="horizontal">Horizontal</button>
+            <button type="button" class="seg-btn" data-layout="vertical">Vertical</button>
+            <button type="button" class="seg-btn active" data-layout="horizontal">Horizontal</button>
           </div>
         </div>
 
-        <!-- Theme -->
         <div class="control-group">
           <span class="control-label">Theme</span>
           <div class="segmented" id="themeControl">
-            <button type="button" class="seg-btn" data-set-theme="light">Light</button>
-            <button type="button" class="seg-btn active" data-set-theme="dark">Dark</button>
+            <button type="button" class="seg-btn active" data-set-theme="light">Light</button>
+            <button type="button" class="seg-btn" data-set-theme="dark">Dark</button>
           </div>
         </div>
 
-        <!-- Colour -->
         <div class="control-group">
           <span class="control-label">Colour</span>
-          <div class="swatches" id="colorControl">
-            <button type="button" class="swatch active" data-color="blue" aria-label="Blue"></button>
-            <button type="button" class="swatch" data-color="purple" aria-label="Purple"></button>
-            <button type="button" class="swatch" data-color="green" aria-label="Green"></button>
-            <button type="button" class="swatch" data-color="red" aria-label="Red"></button>
-            <button type="button" class="swatch" data-color="orange" aria-label="Orange"></button>
-            <button type="button" class="swatch" data-color="yellow" aria-label="Yellow"></button>
-            <button type="button" class="swatch" data-color="pink" aria-label="Pink"></button>
-            <button type="button" class="swatch" data-color="cyan" aria-label="Cyan"></button>
-            <button type="button" class="swatch" data-color="teal" aria-label="Teal"></button>
-            <button type="button" class="swatch" data-color="indigo" aria-label="Indigo"></button>
-          </div>
+          <button type="button" class="colour-trigger" id="colourTrigger" aria-haspopup="dialog"
+            aria-controls="colourDialog">
+            <span class="colour-dot" id="colourDot"></span>
+            <span>Colour</span>
+          </button>
         </div>
 
       </div>
     </div>
   </header>
 
+  <dialog class="colour-dialog" id="colourDialog" aria-label="Choose accent colour">
+    <div class="colour-dialog-head">
+      <h3>Choose a colour</h3>
+      <button type="button" class="colour-dialog-close" id="colourClose" aria-label="Close">×</button>
+    </div>
+    <div class="colour-grid" id="colourGrid">
+      <button type="button" class="colour-swatch active" data-color="blue" aria-label="Blue"></button>
+      <button type="button" class="colour-swatch" data-color="purple" aria-label="Purple"></button>
+      <button type="button" class="colour-swatch" data-color="green" aria-label="Green"></button>
+      <button type="button" class="colour-swatch" data-color="red" aria-label="Red"></button>
+      <button type="button" class="colour-swatch" data-color="orange" aria-label="Orange"></button>
+      <button type="button" class="colour-swatch" data-color="yellow" aria-label="Yellow"></button>
+      <button type="button" class="colour-swatch" data-color="pink" aria-label="Pink"></button>
+      <button type="button" class="colour-swatch" data-color="cyan" aria-label="Cyan"></button>
+      <button type="button" class="colour-swatch" data-color="teal" aria-label="Teal"></button>
+      <button type="button" class="colour-swatch" data-color="indigo" aria-label="Indigo"></button>
+      <button type="button" class="colour-swatch" data-color="lime" aria-label="Lime"></button>
+      <button type="button" class="colour-swatch" data-color="rose" aria-label="Rose"></button>
+      <button type="button" class="colour-swatch" data-color="slate" aria-label="Slate"></button>
+      <button type="button" class="colour-swatch" data-color="amber" aria-label="Amber"></button>
+      <button type="button" class="colour-swatch" data-color="emerald" aria-label="Emerald"></button>
+      <button type="button" class="colour-swatch" data-color="fuchsia" aria-label="Fuchsia"></button>
+      <button type="button" class="colour-swatch" data-color="sky" aria-label="Sky"></button>
+      <button type="button" class="colour-swatch" data-color="violet" aria-label="Violet"></button>
+      <button type="button" class="colour-swatch" data-color="coral" aria-label="Coral"></button>
+      <button type="button" class="colour-swatch" data-color="mint" aria-label="Mint"></button>
+    </div>
+  </dialog>
 
-  <!-- ============================================================
-       MAIN — scroll region
-       ============================================================ -->
   <main class="page" id="page">
 
-    <!-- HERO -->
     <section class="panel" id="hero">
 
       <div class="hero-content">
 
-        <!-- ============================================================
-             PROFILE IMAGE
-             Replace PASTE_YOUR_PHOTO_URL_HERE with your photo URL.
-             Examples:
-               https://example.com/my-photo.jpg
-               ./images/profile.png       (file in an "images" folder)
-             ============================================================ -->
         <div class="hero-avatar">
           <img src="WhatsApp Image 2026-09-17 at 4.46.31 AM.jpeg" alt="Aniruddh Rao" loading="eager"
             onerror="this.style.display='none'">
@@ -109,83 +105,206 @@
           <p class="role">AI Software Engineer</p>
           <p class="meta">Bhopal, India · +91 9302629271</p>
           <p class="lead">
-            Motivated AI/ML graduate and MCA student specializing in AI/ML, with hands-on experience in Python, FastAPI,
-            Generative AI, and full-stack development. I build intelligent and scalable software solutions while
-            continuously developing my knowledge through self-education in Generative AI, Machine Learning, Deep
-            Learning, emerging technologies, and quantum computing.
+            BCA graduate with a strong foundation in Artificial Intelligence, Machine Learning, Deep Learning, and
+            Software Engineering. Proficient in Python, FastAPI, HTML, CSS, JavaScript, MySQL, Git, and Generative AI.
+            Built an AI-powered mock interview system using Generative AI for adaptive interview question generation.
+            Seeking an AI/ML or AI Software Engineer role to build intelligent software solutions.
           </p>
+
           <div class="cta-row">
             <a class="btn" href="https://www.linkedin.com/in/aniruddh-rao-a4a6613a5/" target="_blank"
               rel="noopener">LinkedIn</a>
             <a class="btn ghost" href="https://github.com/aniruddhrao1901" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn ghost" href="AniruddhRaoResume09102026.pdf" download>Download Resume</a>
           </div>
-          <p class="scroll-hint" id="scrollHint">Scroll down to explore</p>
+
+          <div class="quick-links">
+            <a class="quick-link" href="mailto:aniruddhrao012005@gmail.com" title="Email">
+              <span class="ql-icon">✉</span> Email
+            </a>
+            <a class="quick-link" href="https://github.com/aniruddhrao1901" target="_blank" rel="noopener" title="GitHub">
+              <span class="ql-icon">GH</span> GitHub
+            </a>
+            <a class="quick-link" href="https://www.linkedin.com/in/aniruddh-rao-a4a6613a5/" target="_blank"
+              rel="noopener" title="LinkedIn">
+              <span class="ql-icon">IN</span> LinkedIn
+            </a>
+            <a class="quick-link" href="https://www.instagram.com/aniruddh_rao_19/" target="_blank" rel="noopener"
+              title="Instagram">
+              <span class="ql-icon">IG</span> Instagram
+            </a>
+            <a class="quick-link" href="https://x.com/Aniruddhrao2005" target="_blank" rel="noopener" title="X">
+              <span class="ql-icon">X</span> X
+            </a>
+            <a class="quick-link" href="https://www.youtube.com/@AniruddhRao-cool123" target="_blank" rel="noopener"
+              title="YouTube">
+              <span class="ql-icon">YT</span> YouTube
+            </a>
+            <a class="quick-link" href="https://my-web-sooty-phi.vercel.app/" target="_blank" rel="noopener"
+              title="Portfolio">
+              <span class="ql-icon">⌂</span> Portfolio
+            </a>
+          </div>
+
+          <p class="scroll-hint" id="scrollHint">Scroll sideways to explore</p>
         </div>
 
       </div>
 
     </section>
 
-    <!-- ABOUT -->
     <section class="panel" id="about">
       <h2>About Me</h2>
       <p class="lead">
-        I am Aniruddh, an MCA student specializing in Artificial Intelligence and Machine Learning at LNCT University,
-        Bhopal. I am currently in my first semester and actively working on personal projects to apply and strengthen my
-        knowledge.
+        I am Aniruddh, a BCA graduate with a strong foundation in Artificial Intelligence, Machine Learning, Deep
+        Learning, and Software Engineering. I enjoy building intelligent software solutions and applying AI
+        technologies to real-world problems.
 
         My interests include Artificial Intelligence, Machine Learning, Deep Learning, Generative AI, and software
-        engineering. I am also exploring emerging and future technologies, particularly quantum computing, while
-        continuously educating myself and building practical projects.
-
+        engineering. I continuously educate myself and build practical projects to strengthen my skills.
       </p>
+
       <div class="card">
         <h3>Education</h3>
         <p><strong>Bachelor of Computer Applications (BCA)</strong></p>
+        <p>Extol College, E8 Extension Bawadiya Kalan Road, Huzur, MP, Bhopal</p>
         <p>Makhanlal Chaturvedi National University of Journalism and Communication, Bhopal</p>
-        <p class="muted">Jul 2023 – Jun 2026 · CGPA 7.1</p>
+        <p class="muted">Jul 2023 – Jun 2026</p>
       </div>
     </section>
 
-    <!-- SKILLS -->
     <section class="panel" id="skills">
       <h2>Skills</h2>
-      <ul class="chip-list">
-        <li class="chip">Python</li>
-        <li class="chip">JavaScript (ES6+)</li>
-        <li class="chip">HTML5 &amp; CSS3</li>
-        <li class="chip">FastAPI</li>
-        <li class="chip">MySQL</li>
-        <li class="chip">TensorFlow</li>
-        <li class="chip">NumPy &amp; Pandas</li>
-        <li class="chip">Matplotlib &amp; Seaborn</li>
-        <li class="chip">LangChain</li>
-        <li class="chip">Generative AI</li>
-        <li class="chip">Git &amp; GitHub</li>
-        <li class="chip">Data Structures &amp; Algorithms</li>
-      </ul>
+
+      <div class="card">
+        <h3>Programming Languages</h3>
+        <ul class="chip-list">
+          <li class="chip">Python</li>
+          <li class="chip">JavaScript</li>
+          <li class="chip">C</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Frontend</h3>
+        <ul class="chip-list">
+          <li class="chip">HTML</li>
+          <li class="chip">CSS</li>
+          <li class="chip">JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Backend</h3>
+        <ul class="chip-list">
+          <li class="chip">FastAPI</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Database</h3>
+        <ul class="chip-list">
+          <li class="chip">MySQL</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>AI / ML</h3>
+        <ul class="chip-list">
+          <li class="chip">TensorFlow</li>
+          <li class="chip">NumPy</li>
+          <li class="chip">Pandas</li>
+          <li class="chip">Matplotlib</li>
+          <li class="chip">Seaborn</li>
+          <li class="chip">LangChain</li>
+          <li class="chip">Generative AI</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Coding Tools</h3>
+        <ul class="chip-list">
+          <li class="chip">Anaconda</li>
+          <li class="chip">VS Code</li>
+          <li class="chip">Git and GitHub</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>AI Tools</h3>
+        <ul class="chip-list">
+          <li class="chip">ChatGPT</li>
+          <li class="chip">Google Gemini</li>
+          <li class="chip">DeepSeek</li>
+          <li class="chip">Perplexity</li>
+          <li class="chip">Google AI Studio</li>
+          <li class="chip">Canva</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Productivity Tools</h3>
+        <ul class="chip-list">
+          <li class="chip">MS Excel</li>
+          <li class="chip">MS Word</li>
+          <li class="chip">MS PowerPoint</li>
+          <li class="chip">Google Sheets</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Other</h3>
+        <ul class="chip-list">
+          <li class="chip">Data Structures and Algorithms (DSA)</li>
+        </ul>
+      </div>
     </section>
 
-    <!-- PROJECTS -->
     <section class="panel" id="projects">
       <h2>Projects</h2>
       <div class="card-grid">
         <article class="card">
           <h3>AI-Powered Mock Interview System</h3>
-          <p>An interview preparation platform that generates adaptive technical and HR questions in real time using
-            Generative AI.</p>
-          <p class="tech"><strong>Stack:</strong> Python, FastAPI, HTML, CSS, JS, MySQL, Gen AI</p>
+          <p>Developed an AI-powered mock interview platform for technical and HR interview preparation. Used
+            Generative AI for adaptive interview question generation and practice.</p>
+          <p class="tech"><strong>Stack:</strong> Python, FastAPI, HTML, CSS, JavaScript, MySQL, Generative AI</p>
         </article>
         <article class="card">
           <h3>Personal Portfolio</h3>
-          <p>A responsive portfolio with switchable layout direction, light/dark theme and ten accent colours — built
-            with vanilla HTML, CSS and JS.</p>
+          <p>A responsive portfolio with switchable layout direction, light/dark theme and twenty accent colours —
+            built with vanilla HTML, CSS and JS.</p>
           <p class="tech"><strong>Stack:</strong> HTML, CSS, JavaScript</p>
         </article>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <section class="panel" id="achievements">
+      <h2>Hackathons &amp; Achievements</h2>
+      <div class="card">
+        <ul class="chip-list">
+          <li class="chip">3rd Prize — Sageathon 2026</li>
+          <li class="chip">Participant — HackNova Hackathon 2026</li>
+          <li class="chip">Active Participant — Public Speaking Activities</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="certifications">
+      <h2>Certifications</h2>
+      <div class="card">
+        <ul class="chip-list">
+          <li class="chip">Python Programming</li>
+          <li class="chip">Machine Learning</li>
+          <li class="chip">Artificial Intelligence</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Communication Languages</h3>
+        <p>English — Professional Working Proficiency</p>
+      </div>
+    </section>
+
     <section class="panel" id="contact">
       <h2>Contact Me</h2>
 
@@ -199,6 +318,12 @@
               rel="noopener">aniruddh-rao</a></p>
           <p><strong>GitHub:</strong> <a href="https://github.com/aniruddhrao1901" target="_blank"
               rel="noopener">aniruddhrao1901</a></p>
+          <p><strong>Instagram:</strong> <a href="https://www.instagram.com/aniruddh_rao_19/" target="_blank"
+              rel="noopener">@aniruddh_rao_19</a></p>
+          <p><strong>X:</strong> <a href="https://x.com/Aniruddhrao2005" target="_blank"
+              rel="noopener">@Aniruddhrao2005</a></p>
+          <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@AniruddhRao-cool123" target="_blank"
+              rel="noopener">@AniruddhRao-cool123</a></p>
         </div>
 
         <form id="contactForm" class="card contact-form" action="https://formsubmit.co/aniruddhrao012005@gmail.com"

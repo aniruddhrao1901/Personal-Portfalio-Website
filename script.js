@@ -3,7 +3,7 @@
    ------------------------------------------------------------
    1.  Layout switch   (vertical / horizontal)
    2.  Theme switch    (light / dark)
-   3.  Colour switch   (10 accents)
+   3.  Colour switch   (20 accents via dialog)
    4.  Arrow-key nav   (horizontal mode)
    5.  Nav link smooth scroll
    6.  Contact form validation + submission
@@ -12,10 +12,10 @@
 (function () {
   'use strict';
 
-  /* Diagnostic — confirms the file actually loaded */
   console.log('%c[Portfolio] script.js loaded ✓',
     'color:#0f0;font-weight:bold');
 
+  var STORAGE_KEY = 'portfolio-prefs-v2';
 
   /* ============================================================
      SMALL HELPERS
@@ -37,7 +37,6 @@
       fn();
     }
   }
-
 
   /* ============================================================
      BOOT
@@ -64,7 +63,6 @@
       'color:#0f0;font-weight:bold');
   });
 
-
   /* ============================================================
      1. LAYOUT  (vertical / horizontal)
      ============================================================ */
@@ -73,12 +71,10 @@
     var page = $('#page');
     var hint = $('#scrollHint');
 
-    // Restore saved layout
-    var saved = readPref('layout', 'vertical');
-    if (saved !== 'vertical' && saved !== 'horizontal') saved = 'vertical';
+    var saved = readPref('layout', 'horizontal');
+    if (saved !== 'vertical' && saved !== 'horizontal') saved = 'horizontal';
     applyLayout(saved, false);
 
-    // Bind buttons
     $$('#layoutControl button').forEach(function (btn) {
       btn.addEventListener('click', function () {
         applyLayout(btn.getAttribute('data-layout'), true);
@@ -90,7 +86,6 @@
 
       html.setAttribute('data-layout', layout);
 
-      // Active state
       $$('#layoutControl button').forEach(function (b) {
         b.classList.toggle(
           'active',
@@ -98,14 +93,12 @@
         );
       });
 
-      // Hint text
       if (hint) {
         hint.textContent = layout === 'horizontal'
           ? 'Scroll sideways to explore'
           : 'Scroll down to explore';
       }
 
-      // Reset scroll position
       if (page) {
         try { page.scrollTo({ left: 0, top: 0, behavior: 'auto' }); }
         catch (e) { page.scrollLeft = 0; page.scrollTop = 0; }
@@ -116,11 +109,8 @@
     }
   }
 
-
   /* ============================================================
      2. THEME  (light / dark)
-     Reads `data-set-theme` from buttons (falls back to
-     `data-theme` for older markup).
      ============================================================ */
   function initTheme() {
     var html = document.documentElement;
@@ -130,8 +120,8 @@
           || btn.getAttribute('data-theme');
     }
 
-    var saved = readPref('theme', 'dark');
-    if (saved !== 'dark' && saved !== 'light') saved = 'dark';
+    var saved = readPref('theme', 'light');
+    if (saved !== 'dark' && saved !== 'light') saved = 'light';
     applyTheme(saved, false);
 
     $$('#themeControl button').forEach(function (btn) {
@@ -154,22 +144,71 @@
     }
   }
 
-
   /* ============================================================
-     3. COLOUR  (10 accents)
+     3. COLOUR  (20 accents via dialog)
      ============================================================ */
   function initColor() {
     var html = document.documentElement;
-    var VALID = ['blue', 'purple', 'green', 'red', 'orange',
-                 'yellow', 'pink', 'cyan', 'teal', 'indigo'];
+    var VALID = [
+      'blue', 'purple', 'green', 'red', 'orange',
+      'yellow', 'pink', 'cyan', 'teal', 'indigo',
+      'lime', 'rose', 'slate', 'amber', 'emerald',
+      'fuchsia', 'sky', 'violet', 'coral', 'mint'
+    ];
+
+    var dialog  = $('#colourDialog');
+    var trigger = $('#colourTrigger');
+    var closeBtn = $('#colourClose');
+    var grid    = $('#colourGrid');
 
     var saved = readPref('color', 'blue');
     if (VALID.indexOf(saved) === -1) saved = 'blue';
     applyColor(saved, false);
 
-    $$('#colorControl button').forEach(function (btn) {
+    // Open dialog
+    if (trigger && dialog) {
+      trigger.addEventListener('click', function () {
+        if (typeof dialog.showModal === 'function') {
+          dialog.showModal();
+          // Focus the currently active swatch
+          var active = grid.querySelector('.colour-swatch.active');
+          if (active) active.focus();
+        } else {
+          dialog.setAttribute('open', '');
+        }
+      });
+    }
+
+    // Close button
+    if (closeBtn && dialog) {
+      closeBtn.addEventListener('click', function () {
+        dialog.close();
+      });
+    }
+
+    // Click on backdrop closes
+    if (dialog) {
+      dialog.addEventListener('click', function (e) {
+        // Detect click outside the dialog content
+        var rect = dialog.getBoundingClientRect();
+        var inside =
+          e.clientX >= rect.left && e.clientX <= rect.right &&
+          e.clientY >= rect.top  && e.clientY <= rect.bottom;
+        if (!inside) dialog.close();
+      });
+
+      // Return focus to trigger when closed
+      dialog.addEventListener('close', function () {
+        if (trigger) trigger.focus();
+      });
+    }
+
+    // Swatch clicks
+    $$('#colourGrid button').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        applyColor(btn.getAttribute('data-color'), true);
+        var c = btn.getAttribute('data-color');
+        applyColor(c, true);
+        if (dialog) dialog.close();
       });
     });
 
@@ -178,7 +217,7 @@
 
       html.setAttribute('data-color', color);
 
-      $$('#colorControl button').forEach(function (b) {
+      $$('#colourGrid button').forEach(function (b) {
         b.classList.toggle(
           'active',
           b.getAttribute('data-color') === color
@@ -190,12 +229,10 @@
     }
   }
 
-
   /* ============================================================
      4. NAV LINKS + ARROW-KEY NAVIGATION
      ============================================================ */
   function initNav() {
-    // Smooth scroll on any in-page link
     $$('a[href^="#"]').forEach(function (link) {
       link.addEventListener('click', function (e) {
         var href = link.getAttribute('href');
@@ -215,14 +252,16 @@
       });
     });
 
-    // Arrow keys in horizontal mode
     document.addEventListener('keydown', function (e) {
       var html = document.documentElement;
       if (html.getAttribute('data-layout') !== 'horizontal') return;
 
-      // Don't hijack arrows inside form fields
       var tag = (e.target.tagName || '').toLowerCase();
       if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+      // Don't hijack arrow keys inside an open dialog
+      var dialog = document.getElementById('colourDialog');
+      if (dialog && dialog.open) return;
 
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       e.preventDefault();
@@ -249,7 +288,6 @@
     });
   }
 
-
   /* ============================================================
      5. CONTACT FORM
      ============================================================ */
@@ -270,7 +308,6 @@
     var submitBtn = $('#submitBtn');
     var statusEl  = $('#formStatus');
 
-    /* ---- Field-level error helpers ---- */
     function showErr(field, errEl, msg) {
       field.classList.add('invalid');
       errEl.textContent = msg;
@@ -295,7 +332,6 @@
       statusEl.className = 'form-status ' + (type || '');
     }
 
-    /* ---- Validators ---- */
     function validateName() {
       var v = nameEl.value.trim();
       if (!v)             { showErr(nameEl, nameErr, 'Please enter your name.'); return false; }
@@ -330,7 +366,6 @@
       clearErr(messageEl, messageErr); return true;
     }
 
-    /* ---- Clear error on typing ---- */
     [
       [nameEl,    nameErr],
       [emailEl,   emailErr],
@@ -344,7 +379,6 @@
       });
     });
 
-    /* ---- Submit ---- */
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       clearAll();
@@ -374,7 +408,6 @@
       submitBtn.textContent = 'Sending…';
       setStatus('Sending your message…', '');
 
-      /* Try the FormSubmit AJAX endpoint first */
       fetch('https://formsubmit.co/ajax/aniruddhrao012005@gmail.com', {
         method: 'POST',
         headers: {
@@ -408,8 +441,6 @@
       .catch(function (err) {
         console.warn('[Portfolio] AJAX failed, using native form POST:', err);
 
-        /* Fallback: real HTML POST to FormSubmit.
-           form.submit() bypasses the submit event, so we don't loop. */
         setStatus('Opening secure send page…', '');
         HTMLFormElement.prototype.submit.call(form);
 
@@ -421,13 +452,12 @@
     });
   }
 
-
   /* ============================================================
      PREFERENCE STORAGE
      ============================================================ */
   function readPref(key, fallback) {
     try {
-      var prefs = JSON.parse(localStorage.getItem('portfolio-prefs') || '{}');
+      var prefs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       return prefs[key] || fallback;
     } catch (e) {
       return fallback;
@@ -436,9 +466,9 @@
 
   function writePref(key, value) {
     try {
-      var prefs = JSON.parse(localStorage.getItem('portfolio-prefs') || '{}');
+      var prefs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       prefs[key] = value;
-      localStorage.setItem('portfolio-prefs', JSON.stringify(prefs));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
     } catch (e) { /* storage disabled — ignore */ }
   }
 
